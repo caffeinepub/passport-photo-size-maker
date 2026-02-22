@@ -1,0 +1,45 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Add shared Remove.bg API key to backend for universal access",
+  "requirements": [
+    {
+      "id": "REQ-40",
+      "summary": "Remove the user API key input field from the BackgroundRemover component UI and fetch the shared API key from the backend instead",
+      "acceptanceCriteria": [
+        "API key input field is completely removed from BackgroundRemover component",
+        "Local storage API key functionality is removed",
+        "Component automatically fetches the shared API key from backend when initializing background removal",
+        "Users no longer need to provide their own Remove.bg API key"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/BackgroundRemover.tsx",
+          "operation": "modify",
+          "description": "Remove the API key input field UI and local storage functionality. Remove all state management related to user-provided API keys. Update the component to rely on the useBackgroundRemoval hook to fetch the shared API key from the backend automatically. Remove the conditional rendering that displays the API key input form and replaces it with a streamlined UI that directly shows the background removal controls. Ensure the component no longer accepts or manages user API keys."
+        }
+      ]
+    },
+    {
+      "id": "REQ-41",
+      "summary": "Update the useBackgroundRemoval hook to fetch the shared Remove.bg API key from the backend before making API calls",
+      "acceptanceCriteria": [
+        "Hook fetches API key from backend query/endpoint before calling Remove.bg API",
+        "Background removal process uses the backend-provided API key automatically",
+        "Error handling displays appropriate messages if backend key fetch fails"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useBackgroundRemoval.ts",
+          "operation": "modify",
+          "description": "Integrate backend API key fetching into the removeBackground function. Use the useActor hook to get the backend actor, then call getBgRemoveApiKey() to retrieve the shared API key before making Remove.bg API requests. Update the function signature to remove the apiKey parameter since it will be fetched internally. Add error handling for backend key fetch failures with user-friendly error messages. Ensure the hook automatically retrieves the API key each time background removal is initiated, eliminating the need for user input or local storage."
+        },
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Add a React Query hook useGetBgRemoveApiKey that wraps the backend's getBgRemoveApiKey method. Configure the query to fetch the API key with appropriate caching strategy. This query will be used by useBackgroundRemoval to retrieve the shared API key from the backend."
+        }
+      ]
+    }
+  ]
+}

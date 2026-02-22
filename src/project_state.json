@@ -1,0 +1,387 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 21,
+  "summary": "Passport Photo Size Maker web application (3.5x4.5 cm) with manual cropping, Remove.bg API-powered background removal, color options (white/black/blue), and multi-format download (JPG/PNG) at 300 DPI",
+  "architectural_notes": [
+    "React + TypeScript frontend application",
+    "Image processing with canvas API for cropping and background manipulation",
+    "300 DPI resolution for Indian passport photo standards (3.5x4.5 cm = 413x531 pixels at 300 DPI)",
+    "Client-side image processing without backend dependency",
+    "Remove.bg API integration for professional-grade background removal (replacing client-side @imgly/background-removal)",
+    "Backend environment variable for shared Remove.bg API key (scfjBzfHc4MnzCCajQdAxZp6) - all users share same key without manual input"
+  ],
+  "known_issues": [],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-image-upload-functionality-that-accepts-common-image-formats-jpg-png-webp-and-displays-the-uploaded-image-for-editing",
+      "title": "Implement image upload functionality that accepts common image formats (JPG, PNG, WEBP) and displays the uploaded image for editing",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-an-interactive-manual-cropping-interface-where-users-can-drag-to-select-the-crop-area-with-the-final-output-constrained-to-3-5x4-5-cm-passport-photo-dimensions",
+      "title": "Create an interactive manual cropping interface where users can drag to select the crop area, with the final output constrained to 3.5x4.5 cm passport photo dimensions",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-background-removal-feature-that-removes-the-original-background-from-the-cropped-image",
+      "title": "Implement background removal feature that removes the original background from the cropped image",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-provide-background-color-selection-options-with-white-black-and-blue-colors-matching-indian-passport-photo-standards",
+      "title": "Provide background color selection options with white, black, and blue colors matching Indian passport photo standards",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enable-download-of-the-final-passport-photo-in-both-jpg-and-png-formats-at-300-dpi-print-ready-resolution-413x531-pixels-for-3-5x4-5-cm",
+      "title": "Enable download of the final passport photo in both JPG and PNG formats at 300 DPI print-ready resolution (413x531 pixels for 3.5x4.5 cm)",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-design-a-clean-intuitive-user-interface-with-a-professional-photography-studio-aesthetic-using-warm-neutral-tones-with-accent-colors-modern-typography-and-a-step-by-step-workflow-that-guides-users-through-upload-crop-background-removal-color-selection-and-download-stages",
+      "title": "Design a clean, intuitive user interface with a professional photography studio aesthetic, using warm neutral tones with accent colors, modern typography, and a step-by-step workflow that guides users through upload, crop, background removal, color selection, and download stages",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-cropeditor-component-to-properly-display-the-uploaded-image-when-users-navigate-to-the-crop-step-ensuring-the-image-loads-and-renders-correctly-on-the-canvas",
+      "title": "Fix the CropEditor component to properly display the uploaded image when users navigate to the crop step, ensuring the image loads and renders correctly on the canvas",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-interactive-cropping-functionality-works-with-real-time-preview-allowing-users-to-drag-and-adjust-the-crop-area-while-seeing-immediate-visual-feedback-of-their-selection",
+      "title": "Ensure the interactive cropping functionality works with real-time preview, allowing users to drag and adjust the crop area while seeing immediate visual feedback of their selection",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-debug-and-fix-any-image-loading-canvas-rendering-or-state-management-issues-in-the-cropeditor-component-that-are-causing-the-blank-screen",
+      "title": "Debug and fix any image loading, canvas rendering, or state management issues in the CropEditor component that are causing the blank screen",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-cropeditor-component-s-canvas-scaling-logic-to-properly-fit-the-uploaded-image-within-the-canvas-viewport-at-an-appropriate-initial-scale-ensuring-the-entire-image-is-visible-without-excessive-zoom-when-users-first-enter-the-crop-step",
+      "title": "Fix the CropEditor component's canvas scaling logic to properly fit the uploaded image within the canvas viewport at an appropriate initial scale, ensuring the entire image is visible without excessive zoom when users first enter the crop step",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-adjust-the-canvas-rendering-dimensions-and-scale-calculations-in-cropeditor-to-account-for-image-aspect-ratio-and-canvas-size-preventing-the-image-from-rendering-larger-than-the-available-viewport",
+      "title": "Adjust the canvas rendering dimensions and scale calculations in CropEditor to account for image aspect ratio and canvas size, preventing the image from rendering larger than the available viewport",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-background-removal-functionality-in-the-backgroundremover-component-to-actually-remove-the-background-from-the-cropped-image-instead-of-just-simulating-the-process-ensuring-the-background-is-properly-removed-when-the-user-clicks-the-remove-background-button",
+      "title": "Fix the background removal functionality in the BackgroundRemover component to actually remove the background from the cropped image instead of just simulating the process, ensuring the background is properly removed when the user clicks the 'Remove Background' button",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-background-color-selection-functionality-in-the-backgroundcolorselector-component-to-properly-apply-the-selected-color-white-black-or-blue-to-the-background-removed-image-ensuring-the-selected-color-replaces-the-transparent-background",
+      "title": "Fix the background color selection functionality in the BackgroundColorSelector component to properly apply the selected color (white, black, or blue) to the background-removed image, ensuring the selected color replaces the transparent background",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-actual-background-removal-processing-in-the-usebackgroundremoval-hook-instead-of-the-current-simulation-integrating-a-client-side-background-removal-solution-that-can-process-the-cropped-image-and-output-an-image-with-transparent-background",
+      "title": "Implement actual background removal processing in the useBackgroundRemoval hook instead of the current simulation, integrating a client-side background removal solution that can process the cropped image and output an image with transparent background",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-applybackground-utility-function-to-correctly-handle-transparent-backgrounds-from-background-removed-images-and-properly-composite-the-selected-background-color-underneath-the-subject",
+      "title": "Update the applyBackground utility function to correctly handle transparent backgrounds from background-removed images and properly composite the selected background color underneath the subject",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-canvas-based-color-similarity-background-removal-logic-in-usebackgroundremoval-hook-with-the-imgly-background-removal-library-to-properly-remove-backgrounds-from-cropped-images-ensuring-the-library-is-correctly-imported-configured-and-called-when-the-user-clicks-the-remove-background-button",
+      "title": "Replace the current canvas-based color similarity background removal logic in useBackgroundRemoval hook with the @imgly/background-removal library to properly remove backgrounds from cropped images, ensuring the library is correctly imported, configured, and called when the user clicks the 'Remove Background' button",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-visible-loading-indicator-in-the-backgroundremover-component-that-displays-during-background-removal-processing-showing-clear-feedback-to-users-that-the-operation-is-in-progress",
+      "title": "Add a visible loading indicator in the BackgroundRemover component that displays during background removal processing, showing clear feedback to users that the operation is in progress",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-background-removal-process-outputs-images-with-fully-transparent-backgrounds-alpha-channel-that-can-be-properly-composited-with-selected-background-colors-in-the-backgroundcolorselector-component",
+      "title": "Ensure the background removal process outputs images with fully transparent backgrounds (alpha channel) that can be properly composited with selected background colors in the BackgroundColorSelector component",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-applybackgroundcolor-utility-function-in-backgroundcolorselector-to-properly-composite-the-transparent-background-removed-image-with-the-selected-background-color-white-black-or-blue-ensuring-the-color-fully-replaces-all-transparent-pixels",
+      "title": "Fix the applyBackgroundColor utility function in BackgroundColorSelector to properly composite the transparent background-removed image with the selected background color (white, black, or blue), ensuring the color fully replaces all transparent pixels",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-current-canvas-based-background-removal-implementation-in-usebackgroundremoval-hook-with-a-more-robust-algorithm-that-properly-detects-and-removes-the-entire-background-without-leaving-black-artifacts-or-incomplete-removal-areas",
+      "title": "Replace the current canvas-based background removal implementation in useBackgroundRemoval hook with a more robust algorithm that properly detects and removes the entire background without leaving black artifacts or incomplete removal areas",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-the-imgly-background-removal-library-configuration-in-usebackgroundremoval-hook-to-optimize-subject-detection-accuracy-edge-handling-quality-and-processing-performance-for-passport-photos",
+      "title": "Improve the @imgly/background-removal library configuration in useBackgroundRemoval hook to optimize subject detection accuracy, edge handling quality, and processing performance for passport photos",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-error-handling-in-usebackgroundremoval-hook-and-backgroundremover-component-to-catch-processing-failures-display-clear-error-messages-to-users-and-provide-fallback-options-when-background-removal-fails",
+      "title": "Enhance error handling in useBackgroundRemoval hook and BackgroundRemover component to catch processing failures, display clear error messages to users, and provide fallback options when background removal fails",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-alternative-background-removal-method-in-usebackgroundremoval-hook-as-a-fallback-when-the-primary-imgly-background-removal-library-fails-or-produces-poor-results",
+      "title": "Implement an alternative background removal method in useBackgroundRemoval hook as a fallback when the primary @imgly/background-removal library fails or produces poor results",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-optimize-the-imgly-background-removal-library-configuration-in-usebackgroundremoval-hook-specifically-for-passport-photo-processing-by-adjusting-model-parameters-for-better-subject-detection-edge-refinement-quality-and-hair-detail-preservation",
+      "title": "Optimize the @imgly/background-removal library configuration in useBackgroundRemoval hook specifically for passport photo processing by adjusting model parameters for better subject detection, edge refinement quality, and hair detail preservation",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-multi-pass-processing-in-usebackgroundremoval-hook-that-performs-multiple-refinement-passes-on-the-background-removed-image-to-eliminate-black-artifacts-incomplete-removal-areas-and-edge-artifacts",
+      "title": "Implement multi-pass processing in useBackgroundRemoval hook that performs multiple refinement passes on the background-removed image to eliminate black artifacts, incomplete removal areas, and edge artifacts",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-alpha-channel-processing-in-usebackgroundremoval-hook-to-ensure-fully-transparent-backgrounds-with-proper-alpha-values-that-can-be-correctly-composited-with-selected-background-colors-without-transparency-issues",
+      "title": "Enhance alpha channel processing in useBackgroundRemoval hook to ensure fully transparent backgrounds with proper alpha values that can be correctly composited with selected background colors without transparency issues",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-alternative-color-based-background-removal-algorithm-as-a-fallback-method-in-usebackgroundremoval-hook-that-activates-when-the-primary-imgly-background-removal-library-fails-or-produces-poor-quality-results",
+      "title": "Add an alternative color-based background removal algorithm as a fallback method in useBackgroundRemoval hook that activates when the primary @imgly/background-removal library fails or produces poor quality results",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-quality-validation-in-usebackgroundremoval-hook-that-automatically-detects-poor-removal-results-excessive-black-artifacts-incomplete-background-removal-low-alpha-channel-quality-and-triggers-automatic-retry-with-alternative-methods",
+      "title": "Implement quality validation in useBackgroundRemoval hook that automatically detects poor removal results (excessive black artifacts, incomplete background removal, low alpha channel quality) and triggers automatic retry with alternative methods",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-imgly-background-removal-implementation-in-usebackgroundremoval-hook-with-a-more-advanced-ai-model-or-library-configuration-that-completely-eliminates-black-artifacts-on-faces-and-clothing-during-background-removal-processing",
+      "title": "Replace the existing @imgly/background-removal implementation in useBackgroundRemoval hook with a more advanced AI model or library configuration that completely eliminates black artifacts on faces and clothing during background removal processing",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-configure-the-background-removal-ai-model-to-use-maximum-quality-settings-with-processing-time-allowance-of-10-15-seconds-prioritizing-accuracy-over-speed",
+      "title": "Configure the background removal AI model to use maximum quality settings with processing time allowance of 10-15 seconds, prioritizing accuracy over speed",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-advanced-edge-refinement-in-usebackgroundremoval-hook-that-specifically-handles-hair-details-and-clothing-textures-to-prevent-black-residue-or-incomplete-removal",
+      "title": "Implement advanced edge refinement in useBackgroundRemoval hook that specifically handles hair details and clothing textures to prevent black residue or incomplete removal",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-loading-indicator-in-backgroundremover-component-to-display-detailed-progress-information-during-the-10-15-second-ai-processing-showing-percentage-completion-or-processing-stage",
+      "title": "Enhance the loading indicator in BackgroundRemover component to display detailed progress information during the 10-15 second AI processing, showing percentage completion or processing stage",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-post-processing-validation-in-usebackgroundremoval-hook-that-automatically-detects-any-remaining-black-artifacts-or-incomplete-removal-and-triggers-a-second-refinement-pass-if-needed",
+      "title": "Add post-processing validation in useBackgroundRemoval hook that automatically detects any remaining black artifacts or incomplete removal and triggers a second refinement pass if needed",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-existing-client-side-background-removal-implementation-in-usebackgroundremoval-hook-with-remove-bg-api-integration-that-sends-the-cropped-image-to-remove-bg-s-api-endpoint-and-returns-a-professionally-processed-image-with-transparent-background",
+      "title": "Replace the existing client-side background removal implementation in useBackgroundRemoval hook with Remove.bg API integration that sends the cropped image to Remove.bg's API endpoint and returns a professionally processed image with transparent background",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-user-api-key-input-functionality-in-the-backgroundremover-component-that-allows-users-to-provide-their-own-remove-bg-api-key-for-unlimited-usage-with-the-key-stored-securely-in-browser-local-storage",
+      "title": "Implement user API key input functionality in the BackgroundRemover component that allows users to provide their own Remove.bg API key for unlimited usage, with the key stored securely in browser local storage",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-comprehensive-error-handling-in-usebackgroundremoval-hook-for-remove-bg-api-failures-including-network-errors-invalid-api-keys-rate-limit-exceeded-and-processing-failures-displaying-user-friendly-error-messages-with-suggested-actions",
+      "title": "Add comprehensive error handling in useBackgroundRemoval hook for Remove.bg API failures including network errors, invalid API keys, rate limit exceeded, and processing failures, displaying user-friendly error messages with suggested actions",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-loading-indicator-in-backgroundremover-component-to-show-remove-bg-api-processing-status-with-appropriate-messaging-during-the-3-5-second-processing-time-indicating-that-professional-ai-powered-background-removal-is-in-progress",
+      "title": "Update the loading indicator in BackgroundRemover component to show Remove.bg API processing status with appropriate messaging during the 3-5 second processing time, indicating that professional AI-powered background removal is in progress",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-references-to-imgly-background-removal-library-from-the-codebase-including-imports-configuration-and-implementation-code-in-usebackgroundremoval-hook-replacing-it-entirely-with-remove-bg-api-integration",
+      "title": "Remove all references to @imgly/background-removal library from the codebase including imports, configuration, and implementation code in useBackgroundRemoval hook, replacing it entirely with Remove.bg API integration",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-the-user-api-key-input-field-from-the-backgroundremover-component-ui-and-fetch-the-shared-api-key-from-the-backend-instead",
+      "title": "Remove the user API key input field from the BackgroundRemover component UI and fetch the shared API key from the backend instead",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-usebackgroundremoval-hook-to-fetch-the-shared-remove-bg-api-key-from-the-backend-before-making-api-calls",
+      "title": "Update the useBackgroundRemoval hook to fetch the shared Remove.bg API key from the backend before making API calls",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Image upload functionality",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Manual drag-to-crop interface for 3.5x4.5 cm dimensions",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Background removal feature",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Background color options: white, black, blue",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Download in JPG and PNG formats at 300 DPI",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Integrate Remove.bg API for professional background removal with user-provided API keys",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Add Remove.bg API key 'scfjBzfHc4MnzCCajQdAxZp6' as an environment variable in the backend that can be accessed by all users",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Passport Photo Size Maker",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

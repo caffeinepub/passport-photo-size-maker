@@ -1,0 +1,82 @@
+{
+  "kind": "build_request",
+  "title": "Add shared Remove.bg API key to backend for universal access",
+  "projectName": "Passport Photo Maker",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-39",
+      "text": "Add Remove.bg API key 'scfjBzfHc4MnzCCajQdAxZp6' as an environment variable in the backend that can be accessed by all users",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "scfjBzfHc4MnzCCajQdAxZp6 ei api ta add korun",
+          "Sobai jate bebohar korte pare",
+          "Backend"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores the Remove.bg API key 'scfjBzfHc4MnzCCajQdAxZp6' as an environment variable",
+        "Backend exposes a query or update method that returns the API key to frontend clients",
+        "All users can access the shared API key through the backend endpoint"
+      ]
+    },
+    {
+      "id": "REQ-40",
+      "text": "Remove the user API key input field from the BackgroundRemover component UI and fetch the shared API key from the backend instead",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "Current remove kore jeta dilam seta din",
+          "Sobai jate bebohar korte pare"
+        ]
+      },
+      "acceptanceCriteria": [
+        "API key input field is completely removed from BackgroundRemover component",
+        "Local storage API key functionality is removed",
+        "Component automatically fetches the shared API key from backend when initializing background removal",
+        "Users no longer need to provide their own Remove.bg API key"
+      ]
+    },
+    {
+      "id": "REQ-41",
+      "text": "Update the useBackgroundRemoval hook to fetch the shared Remove.bg API key from the backend before making API calls",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-last"
+        ],
+        "quotes": [
+          "Backend",
+          "Build kori"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hook fetches API key from backend query/endpoint before calling Remove.bg API",
+        "Background removal process uses the backend-provided API key automatically",
+        "Error handling displays appropriate messages if backend key fetch fails"
+      ]
+    }
+  ],
+  "constraints": [
+    "Maintain single-actor architecture in backend/main.mo",
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts",
+    "Keep existing Remove.bg API integration logic intact, only change the API key source"
+  ],
+  "nonGoals": [
+    "User authentication or authorization for API key access",
+    "Rate limiting or usage tracking per user",
+    "API key rotation or management features",
+    "Support for multiple API keys or user-provided keys"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

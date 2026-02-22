@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component managing the 5-step workflow with proper state flow from cropped image to background-removed image to final image with colored background applied.",
+  "frontend/src/components/Layout.tsx": "Layout wrapper component with header, footer, and social media links following the professional photography studio aesthetic.",
+  "frontend/src/components/WorkflowStepper.tsx": "Step indicator component showing the current stage in the passport photo creation workflow with visual progress tracking.",
+  "frontend/src/components/ImageUploader.tsx": "Image upload component supporting drag-and-drop and file selection with validation for JPG, PNG, and WEBP formats up to 10MB.",
+  "frontend/src/components/CropEditor.tsx": "Interactive manual cropping interface using HTML5 canvas with automatic image fitting to viewport, drag-to-reposition and zoom controls, maintaining 3.5:4.5 aspect ratio with visual crop overlay and grid lines.",
+  "frontend/src/components/BackgroundRemover.tsx": "Background removal component that automatically uses the shared backend API key without requiring user input, displaying professional AI processing UI with loading states and error handling.",
+  "frontend/src/components/BackgroundColorSelector.tsx": "Color selector component that applies selected background colors (white #FFFFFF, black #000000, blue #0000FF) to transparent images with real-time preview, Loader2 loading indicators during processing, and checkerboard pattern for transparency visualization.",
+  "frontend/src/components/DownloadControls.tsx": "Final download interface allowing users to save their passport photo in JPG or PNG format at 300 DPI.",
+  "frontend/src/utils/cropImage.ts": "Utility function to crop images to exact passport photo dimensions (413×531 pixels) using canvas API with manual crop area calculations.",
+  "frontend/src/utils/applyBackground.ts": "Utility function that properly composites transparent PNG images over solid background colors at passport photo dimensions (413×531 pixels) by drawing the background color first then overlaying the transparent image on top.",
+  "frontend/src/utils/downloadImage.ts": "Utility function to download processed images in JPG or PNG format with proper dimensions and quality settings.",
+  "frontend/src/lib/utils.ts": "Utility function for merging Tailwind CSS classes using clsx and tailwind-merge.",
+  "frontend/src/index.css": "Global styles with warm neutral color palette (beige, cream, soft grays) and coral accent colors for a professional photography studio aesthetic.",
+  "frontend/tailwind.config.js": "Tailwind configuration with custom color tokens, Inter font family, and extended design system for the photography studio theme.",
+  "frontend/src/hooks/useQueries.ts": "React Query hook that fetches the shared Remove.bg API key from the backend using the getBgRemoveApiKey method with infinite cache stale time.",
+  "frontend/src/hooks/useCropState.ts": "Custom hook for managing crop state including position and zoom level with update and reset functions.",
+  "frontend/src/hooks/useImageUpload.ts": "Custom hook for handling image upload with file validation, loading states, and error handling.",
+  "frontend/src/hooks/useBackgroundRemoval.ts": "Custom hook that automatically fetches the shared API key from the backend via useGetBgRemoveApiKey and handles Remove.bg API integration for background removal with comprehensive error handling.",
+  "frontend/package.json": "Package configuration with @imgly/background-removal and onnxruntime-web dependencies added for client-side background removal functionality.",
+  "frontend/src/utils/imageToBlob.ts": "Utility function that converts base64 data URLs or blob URLs to Blob objects suitable for FormData submission to Remove.bg API."
+}
